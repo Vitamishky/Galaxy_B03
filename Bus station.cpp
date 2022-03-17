@@ -6,7 +6,6 @@
 using namespace std;
 
 
-
 int main()
 {
     int Q, Bus = 0;
