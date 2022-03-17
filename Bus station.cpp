@@ -11,8 +11,6 @@ int main()
 {
     int Q, Bus = 0;
     cin >> Q;
-    map <int, string> help;
-    map <pair<string, int>, vector<string>> bus_station;
     map <string, vector<string>> stops_for_bus;
     for(int i = 0; i < Q; i++)
     {
