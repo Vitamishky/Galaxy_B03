@@ -9,11 +9,11 @@ using namespace std;
 
 class spaceShip {
 private:
-    float ss_x, ss_y;
-    float ss_speed_x, ss_speed_y;
-    int ss_width, ss_height;
-    sf::Sprite ss_sprite;
-    sf::Texture ship;
+    float spaceShip_x, spaceShip_y;
+    float spaceShipSpeed_x, spaceShipSpeed_y;
+    int spaceShipWidth, spaceShipHeight;
+    sf::Sprite spaceShipSprite;
+    sf::Texture textureShip;
 public:
     spaceShip();
     spaceShip(sf::RenderWindow&);
