@@ -4,13 +4,13 @@
 
 spaceShip::spaceShip(sf::RenderWindow& game_window) {
     auto surface = game_window.getSize();
-    ss_x = ss_y = 0.5f;
-    ss_speed_x = 5.f / surface.x;
-    ss_speed_y = 5.f / surface.y;
-    ss_width = 128;
-    ss_height = 128;
+    spaceShip_x = spaceShip_y = 0.5f;
+    spaceShipSpeed_x = 5.f / surface.x;
+    spaceShipSpeed_y = 5.f / surface.y;
+    spaceShipWidth = 128;
+    spaceShipHeight = 128;
 
-    if (!ship.loadFromFile("spaceShip.png")) {
+    if (!textureShip.loadFromFile("spaceShip.png")) {
         exit(EXIT_FAILURE);
     }
 
@@ -18,20 +18,20 @@ spaceShip::spaceShip(sf::RenderWindow& game_window) {
 }
 
 void spaceShip::drawSprite(sf::RenderWindow& game_window) {
-    ss_sprite = sf::Sprite(ship);
-    ss_sprite.setOrigin(ss_width / 4, ss_height / 4);
+    spaceShipSprite = sf::Sprite(textureShip);
+    spaceShipSprite.setOrigin(spaceShipWidth / 4, spaceShipHeight / 4);
     auto size = game_window.getSize();
-    ss_sprite.setPosition(ss_x * size.x, ss_y * size.y);
-    game_window.draw(ss_sprite);
+    spaceShipSprite.setPosition(spaceShip_x * size.x, spaceShip_y * size.y);
+    game_window.draw(spaceShipSprite);
 }
 
 void spaceShip::moveShip(float dt, char move) {
     switch (move)
     {
-        case 'l': ss_x -= dt * ss_speed_x; break;
-        case 'r': ss_x += dt * ss_speed_x; break;
-        case 'u': ss_y -= dt * ss_speed_y; break;
-        case 'd': ss_y += dt * ss_speed_y; break;
+        case 'l': spaceShip_x -= dt * spaceShipSpeed_x; break;
+        case 'r': spaceShip_x += dt * spaceShipSpeed_x; break;
+        case 'u': spaceShip_y -= dt * spaceShipSpeed_y; break;
+        case 'd': spaceShip_y += dt * spaceShipSpeed_y; break;
     }
 }
 
