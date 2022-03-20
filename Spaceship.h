@@ -1,5 +1,5 @@
-#ifndef Spaceship_hpp
-#define Spaceship_hpp
+#ifndef spaceShip_hpp
+#define spaceShip_hpp
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -7,17 +7,19 @@
 
 using namespace std;
 
-class Spaceship {
-public:
-    Spaceship();
-    Spaceship(sf::RenderWindow&);
-    ~Spaceship();
-    void moveship(char);
-    void drawsprite(sf::RenderWindow&);
+class spaceShip {
 private:
-    signed int ss_x, ss_y;
-    unsigned int ss_speed;
-    int ss_width, ss_height, ss_radius;
-
+    float ss_x, ss_y;
+    float ss_speed_x, ss_speed_y;
+    int ss_width, ss_height;
+    sf::Sprite ss_sprite;
+    sf::Texture ship;
+public:
+    spaceShip();
+    spaceShip(sf::RenderWindow&);
+    ~spaceShip();
+    void moveShip(float, char);
+    void drawSprite(sf::RenderWindow&);
 };
-#endif /* Spaceship_hpp */
+
+#endif 
