@@ -20,6 +20,7 @@ public:
     ~spaceShip();
     void moveShip(float, char);
     void drawSprite(sf::RenderWindow&);
+    pair<float, float> getCoordinates();
 };
 
 #endif 
