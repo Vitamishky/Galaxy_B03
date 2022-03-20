@@ -1,16 +1,16 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "Spaceship.h"
+#include "spaceShip.h"
 #include <vector>
 
-int main(int, char const**)
+int main()
 {
 
-    sf::RenderWindow window(sf::VideoMode(1960, 1200), "SpaceShuttle");
+    sf::RenderWindow window(sf::VideoMode(1900, 1100), "Galaxy-B03", sf::Style::Fullscreen);
     window.setFramerateLimit(30);
-
+    
     sf::Image icon;
-    if (!icon.loadFromFile("space-shuttle.png")) {
+    if (!icon.loadFromFile("spaceShip.png")) {
         return EXIT_FAILURE;
     }
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
@@ -19,14 +19,18 @@ int main(int, char const**)
     if (!texture.loadFromFile("bg.png")) {
         return EXIT_FAILURE;
     }
-    sf::Sprite sprite(texture);
+    sf::Sprite backWall(texture);
 
-    Spaceship spaceship(window);
+    spaceShip spaceship(window);
+
     sf::Clock sf_clock;
 
     while (window.isOpen()) {
 
         sf::Event event;
+
+        float dt = sf_clock.restart().asSeconds();
+
         while (window.pollEvent(event)) {
 
             if (event.type == sf::Event::Closed) {
@@ -37,19 +41,19 @@ int main(int, char const**)
                 window.close();
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) { spaceship.moveship('l'); }
-            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) { spaceship.moveship('r'); }
-            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) { spaceship.moveship('u'); }
-            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) { spaceship.moveship('d'); }
-
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) spaceship.moveShip(dt, 'l');
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) spaceship.moveShip(dt, 'r');
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) spaceship.moveShip(dt, 'u');
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) spaceship.moveShip(dt, 'd');
         }
 
-        window.clear();
+        window.draw(backWall);
 
-        window.draw(sprite);
-        spaceship.drawsprite(window);
+        spaceship.drawSprite(window);
 
         window.display();
+
+        window.clear();
     }
 
     return EXIT_SUCCESS;
