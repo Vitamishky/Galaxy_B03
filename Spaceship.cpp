@@ -1,32 +1,38 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "Spaceship.h"
+#include "spaceShip.h"
 
-Spaceship::Spaceship(sf::RenderWindow& game_window) {
+spaceShip::spaceShip(sf::RenderWindow& game_window) {
     auto surface = game_window.getSize();
-    ss_x = surface.x / 2;
-    ss_y = surface.y / 2;
-    ss_speed = 5;
+    ss_x = ss_y = 0.5f;
+    ss_speed_x = 5.f / surface.x;
+    ss_speed_y = 5.f / surface.y;
     ss_width = 128;
     ss_height = 128;
-    ss_radius = ss_width / 2;
+
+    if (!ship.loadFromFile("spaceShip.png")) {
+        exit(EXIT_FAILURE);
+    }
+
 
 }
-void Spaceship::drawsprite(sf::RenderWindow& game_window) {
-    sf::Texture ship;
-    if (!ship.loadFromFile("space-shuttle.png")) {
-        //return EXIT_FAILURE;
-    }
-    sf::Sprite ss_sprite(ship);
-    ss_sprite.setPosition(ss_x - ss_sprite.getGlobalBounds().width / 2, ss_y - ss_sprite.getGlobalBounds().height / 2);
+
+void spaceShip::drawSprite(sf::RenderWindow& game_window) {
+    ss_sprite = sf::Sprite(ship);
+    ss_sprite.setOrigin(ss_width / 4, ss_height / 4);
+    auto size = game_window.getSize();
+    ss_sprite.setPosition(ss_x * size.x, ss_y * size.y);
     game_window.draw(ss_sprite);
 }
 
-void Spaceship::moveship(char move) {
-    if (move == 'l') { ss_x -= ss_speed; }
-    else if (move == 'r') { ss_x += ss_speed; }
-    else if (move == 'u') { ss_y -= ss_speed; }
-    else if (move == 'd') { ss_y += ss_speed; }
+void spaceShip::moveShip(float dt, char move) {
+    switch (move)
+    {
+        case 'l': ss_x -= dt * ss_speed_x; break;
+        case 'r': ss_x += dt * ss_speed_x; break;
+        case 'u': ss_y -= dt * ss_speed_y; break;
+        case 'd': ss_y += dt * ss_speed_y; break;
+    }
 }
 
-Spaceship::~Spaceship() {}
+spaceShip::~spaceShip() {}
