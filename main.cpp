@@ -2,22 +2,30 @@
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
 #include "spaceObjects.h"
-#include "view.h"
+#include "camera.h"
+#include "parametrizationScreen.h"
 #include <vector>
 
 int main()
 {
-   //Отрисовка окна
-    sf::RenderWindow window(sf::VideoMode(1900, 1050), "Galaxy-B03");
+    parametrizationScreen screen;
+    //Отрисовка окна
+    sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
+                                          screen.getParametrizationScreen().second), "Galaxy-B03");
     //view.reset(sf::FloatRect(0, 0, 1900, 1050));
 
     window.setFramerateLimit(30);
+
     //Отрисовка иконки около названия окна
     sf::Image icon;
     if (!icon.loadFromFile("spaceShip.png")) {
         return EXIT_FAILURE;
     }
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
+    //Создание класса камеры
+    //camera camera;
+
     //Отрисовка заднего фона
     sf::Texture texture;
     if (!texture.loadFromFile("bg.png")) {
@@ -25,7 +33,7 @@ int main()
     }
     sf::Sprite backWall(texture);
     
-    spaceShip spaceship(window);
+    spaceShip spaceship;
 
     sf::Clock sf_clock;
 
@@ -47,7 +55,7 @@ int main()
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
                 spaceship.moveShip(dt, 'l');
-                //getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
+                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
@@ -68,11 +76,11 @@ int main()
 
         window.draw(backWall);
 
+        //window.setView(view);
+
         spaceship.drawSprite(window);
 
         window.display();
-
-        //window.setView(view);
 
         window.clear();
     }
