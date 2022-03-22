@@ -1,28 +1,26 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
+#include "parametrizationScreen.h"
 
-spaceShip::spaceShip(sf::RenderWindow& game_window) {
-    auto surface = game_window.getSize();
+spaceShip::spaceShip() {
     spaceShip_x = spaceShip_y = 0.5f;
-    spaceShipSpeed_x = 5.f / surface.x;
-    spaceShipSpeed_y = 5.f / surface.y;
+    spaceShipSpeed_x = 5.f / screen.getParametrizationScreen().first;
+    spaceShipSpeed_y = 5.f / screen.getParametrizationScreen().second;
     spaceShipWidth = 128.f;
     spaceShipHeight = 128.f;
-
+    
     if (!textureShip.loadFromFile("spaceShip.png")) {
         exit(EXIT_FAILURE);
     }
-
-
 }
 
-void spaceShip::drawSprite(sf::RenderWindow& game_window) {
+void spaceShip::drawSprite(sf::RenderWindow& gameWindow) {
     spaceShipSprite = sf::Sprite(textureShip);
     spaceShipSprite.setOrigin(spaceShipWidth, spaceShipHeight);
-    auto size = game_window.getSize();
-    spaceShipSprite.setPosition(spaceShip_x * size.x, spaceShip_y * size.y);
-    game_window.draw(spaceShipSprite);
+    spaceShipSprite.setPosition(spaceShip_x * screen.getParametrizationScreen().first,
+                                spaceShip_y * screen.getParametrizationScreen().second);
+    gameWindow.draw(spaceShipSprite);
 }
 
 void spaceShip::moveShip(float dt, char move) {
