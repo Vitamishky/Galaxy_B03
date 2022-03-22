@@ -32,5 +32,16 @@ void spaceObjects::moveObjects(float dt, char move) {
     case 'd': spaceObjects_y += dt * spaceObjectsSpeed_y; break;
     }
 }
+pair<float, float> spaceObjects::getCoordinates() const {
+    float x = spaceObjects_x;
+    float y = spaceObjects_y;
+    pair<float, float> result = make_pair(x, y);
+    return result;
+}
 
 spaceObjects::~spaceObjects() {}
+
+float spaceObjects::getMasse() const{
+    return spaceObjectsMasse;
+}
+
