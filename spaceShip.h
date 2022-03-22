@@ -4,11 +4,13 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
+#include "parametrizationScreen.h"
 
 using namespace std;
 
 class spaceShip {
 private:
+    parametrizationScreen screen;
     float spaceShip_x, spaceShip_y;
     float spaceShipSpeed_x, spaceShipSpeed_y;
     int spaceShipWidth, spaceShipHeight;
@@ -16,7 +18,6 @@ private:
     sf::Texture textureShip;
 public:
     spaceShip();
-    spaceShip(sf::RenderWindow&);
     ~spaceShip();
     void moveShip(float, char);
     void drawSprite(sf::RenderWindow&);
