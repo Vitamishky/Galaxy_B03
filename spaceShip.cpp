@@ -9,6 +9,7 @@ spaceShip::spaceShip() {
     spaceShipSpeed_y = 5.f / screen.getParametrizationScreen().second;
     spaceShipWidth = 128.f;
     spaceShipHeight = 128.f;
+    float spaceShipMasse = 1;
     
     if (!textureShip.loadFromFile("spaceShip.png")) {
         exit(EXIT_FAILURE);
@@ -32,11 +33,15 @@ void spaceShip::moveShip(float dt, char move) {
         case 'd': spaceShip_y += dt * spaceShipSpeed_y; break;
     }
 }
-pair<float, float> spaceShip::getCoordinates() {
+pair<float, float> spaceShip::getCoordinates() const {
     float x = spaceShip_x;
     float y = spaceShip_y;
     pair<float, float> result = make_pair(x, y);
     return result;
 }
 
-spaceShip::~spaceShip() {}
+spaceShip::~spaceShip();
+
+float spaceShip::getMasse() const {
+    return spaceShipMasse;
+}
