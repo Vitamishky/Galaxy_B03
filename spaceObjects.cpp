@@ -1,28 +1,26 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceObjects.h"
+#include "parametrizationScreen.h"
 
-spaceObjects::spaceObjects(sf::RenderWindow& game_window) {
-    auto surface = game_window.getSize();
+spaceObjects::spaceObjects() {
     spaceObjects_x = spaceObjects_y = 0.5f;
-    spaceObjectsSpeed_x = 5.f / surface.x;
-    spaceObjectsSpeed_y = 5.f / surface.y;
+    spaceObjectsSpeed_x = 5.f / screen.getParametrizationScreen().first;
+    spaceObjectsSpeed_y = 5.f / screen.getParametrizationScreen().second;
     spaceObjectsWidth = 128;
     spaceObjectsHeight = 128;
 
     if (!textureObjects.loadFromFile("spaceObjects.png")) {
         exit(EXIT_FAILURE);
     }
-
-
 }
 
-void spaceObjects::drawSprite(sf::RenderWindow& game_window) {
+void spaceObjects::drawSprite(sf::RenderWindow& gameWindow) {
     spaceObjectsSprite = sf::Sprite(textureObjects);
     spaceObjectsSprite.setOrigin(spaceObjectsWidth / 4, spaceObjectsHeight / 4);
-    auto size = game_window.getSize();
-    spaceObjectsSprite.setPosition(spaceObjects_x * size.x, spaceObjects_y * size.y);
-    game_window.draw(spaceObjectsSprite);
+    spaceObjectsSprite.setPosition(spaceObjects_x * screen.getParametrizationScreen().first,
+                                   spaceObjects_y * screen.getParametrizationScreen().second);
+    gameWindow.draw(spaceObjectsSprite);
 }
 
 void spaceObjects::moveObjects(float dt, char move) {
