@@ -6,9 +6,21 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/user/Galaxy_B03/camera.h
+iostream
+-
+SFML/Audio.hpp
+-
+SFML/Graphics.hpp
+-
+stdio.h
+-
+
 C:/Users/user/Galaxy_B03/functions.cpp
 functions.h
 C:/Users/user/Galaxy_B03/functions.h
+cmath
+-
 
 C:/Users/user/Galaxy_B03/functions.h
 iostream
@@ -17,6 +29,22 @@ spaceObjects.h
 C:/Users/user/Galaxy_B03/spaceObjects.h
 spaceShip.h
 C:/Users/user/Galaxy_B03/spaceShip.h
+
+C:/Users/user/Galaxy_B03/main.cpp
+SFML/Audio.hpp
+-
+SFML/Graphics.hpp
+-
+spaceShip.h
+C:/Users/user/Galaxy_B03/spaceShip.h
+spaceObjects.h
+C:/Users/user/Galaxy_B03/spaceObjects.h
+camera.h
+C:/Users/user/Galaxy_B03/camera.h
+parametrizationScreen.h
+C:/Users/user/Galaxy_B03/parametrizationScreen.h
+vector
+-
 
 C:/Users/user/Galaxy_B03/parametrizationScreen.h
 iostream
@@ -37,6 +65,16 @@ SFML/Graphics.hpp
 -
 stdio.h
 -
+parametrizationScreen.h
+C:/Users/user/Galaxy_B03/parametrizationScreen.h
+
+C:/Users/user/Galaxy_B03/spaceShip.cpp
+SFML/Audio.hpp
+-
+SFML/Graphics.hpp
+-
+spaceShip.h
+C:/Users/user/Galaxy_B03/spaceShip.h
 parametrizationScreen.h
 C:/Users/user/Galaxy_B03/parametrizationScreen.h
 
