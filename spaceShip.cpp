@@ -40,6 +40,8 @@ pair<float, float> spaceShip::getCoordinates() const {
     return result;
 }
 
+spaceShip::~spaceShip();
+
 float spaceShip::getMasse() const {
     return spaceShipMasse;
 }
